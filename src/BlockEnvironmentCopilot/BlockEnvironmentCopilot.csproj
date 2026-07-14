@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Dataverse plugins must target .NET Framework 4.6.2 -->
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>BlockEnvironmentCopilot</RootNamespace>
+    <AssemblyName>BlockEnvironmentCopilot</AssemblyName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+
+    <!-- Plugin assemblies registered in Dataverse must be strong-named -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>BlockEnvironmentCopilot.snk</AssemblyOriginatorKeyFile>
+
+    <!-- Recommended for plugin assemblies -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Core SDK types: IPlugin, IOrganizationService, Entity, etc. -->
+    <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.51" />
+
+    <!-- ILMerge/ILRepack is often needed if you add extra dependencies.
+         Keep third-party dependencies to a minimum for sandbox (isolation) mode. -->
+  </ItemGroup>
+
+</Project>
