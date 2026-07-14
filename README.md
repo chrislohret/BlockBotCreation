@@ -14,12 +14,13 @@ src/
     PluginBase.cs                    # Base class handling context/service boilerplate
     LocalPluginContext.cs            # Wrapper exposing common Dataverse services
     BlockBotCreation.cs              # Blocks Copilot agent (bot) creation
+solution/                           # Exported unmanaged Power Platform solution (.zip)
 ```
 
 ## Requirements
 
 - Dataverse plugins **must** target **.NET Framework 4.6.2**.
-- The assembly **must be strong-named** (already configured via `MyPlugin.snk`).
+- The assembly **must be strong-named** (already configured via `BlockEnvironmentCopilot.snk`).
 - Keep third-party dependencies to a minimum so the assembly can run in
   **sandbox (isolation) mode**. If you must add dependencies, merge them with
   [ILRepack](https://github.com/gluck/il-repack) or `ILMerge`.
@@ -47,6 +48,19 @@ Registration for the included `BlockBotCreation` plugin (register in any Environ
 | Primary Entity   | `bot`                     |
 | Stage            | `PreValidation`           |
 | Execution Mode   | `Synchronous`             |
+
+## Solution (download & deploy)
+
+The [`solution/`](solution) folder holds the exported **unmanaged** Power Platform
+solution `.zip`.
+
+1. **Download** the unmanaged solution into a **development environment**.
+2. **Update** it there as needed (plugin step, environment variable, or other
+   components).
+3. **Re-export** the updated unmanaged solution back into `solution/` to keep
+   source control current.
+4. **Deploy** to downstream environments as a **managed** solution using your
+   normal ALM process (pipeline, `pac solution import`, or managed export/import).
 
 ## Develop
 
