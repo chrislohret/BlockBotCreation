@@ -33,9 +33,28 @@ dotnet build -c Release
 
 The signed assembly is produced at `src/BlockEnvironmentCopilot/bin/Release/BlockEnvironmentCopilot.dll`.
 
-## Register the plugin
+## Install (recommended)
 
-Use one of the following:
+The easiest way to deploy this control is to **import the packaged solution** — no
+manual plugin registration required. The solution already contains the plugin
+assembly and its registered step.
+
+1. Download the solution zip from the [`solution/`](solution) folder:
+   [`BlockBotCreation_1_0_0_1.zip`](solution/BlockBotCreation_1_0_0_1.zip).
+2. In the [Power Platform admin center](https://make.powerapps.com) select the
+   target environment, then **Solutions → Import solution**.
+3. Choose the downloaded zip and complete the import.
+
+Once imported, Copilot Studio agent creation is blocked in that environment
+immediately — the plugin step is registered automatically.
+
+> Optionally set the `bbc_MakerUIMessage` environment variable to customize the
+> message shown to makers when creation is blocked.
+
+## Register the plugin manually (developers only)
+
+If you're building from source instead of importing the solution, register the
+step yourself using one of the following:
 
 - **Plugin Registration Tool** (`pac tool prt`) from the Power Platform CLI.
 - **pac plugin push** from the Power Platform CLI.
