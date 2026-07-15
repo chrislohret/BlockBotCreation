@@ -40,7 +40,7 @@ manual plugin registration required. The solution already contains the plugin
 assembly and its registered step.
 
 1. Download the solution zip from the [`solution/`](solution) folder:
-   [`BlockBotCreation_1_0_0_1.zip`](solution/BlockBotCreation_1_0_0_1.zip).
+   [`BlockBotCreation_1_0_0_2.zip`](solution/BlockBotCreation_1_0_0_2.zip).
 2. In the [Power Platform admin center](https://make.powerapps.com) select the
    target environment, then **Solutions → Import solution**.
 3. Choose the downloaded zip and complete the import.
