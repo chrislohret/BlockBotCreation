@@ -10,7 +10,7 @@ BlockEnvironmentCopilot.sln
 src/
   BlockEnvironmentCopilot/
     BlockEnvironmentCopilot.csproj   # SDK-style project targeting .NET Framework 4.6.2
-    BlockEnvironmentCopilot.snk      # Strong-name key (required for registration)
+    BlockEnvironmentCopilot.snk      # Strong-name key (NOT in source control — supply your own)
     PluginBase.cs                    # Base class handling context/service boilerplate
     LocalPluginContext.cs            # Wrapper exposing common Dataverse services
     BlockBotCreation.cs              # Blocks Copilot agent (bot) creation
@@ -20,7 +20,14 @@ solution/                           # Exported unmanaged Power Platform solution
 ## Requirements
 
 - Dataverse plugins **must** target **.NET Framework 4.6.2**.
-- The assembly **must be strong-named** (already configured via `BlockEnvironmentCopilot.snk`).
+- The assembly **must be strong-named**. The strong-name key
+  (`src/BlockEnvironmentCopilot/BlockEnvironmentCopilot.snk`) is **not included
+  in this repository** and is excluded via `.gitignore`. Before building from
+  source, generate your own key in that location:
+
+  ```powershell
+  sn -k src/BlockEnvironmentCopilot/BlockEnvironmentCopilot.snk
+  ```
 - Keep third-party dependencies to a minimum so the assembly can run in
   **sandbox (isolation) mode**. If you must add dependencies, merge them with
   [ILRepack](https://github.com/gluck/il-repack) or `ILMerge`.

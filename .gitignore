@@ -12,6 +12,5 @@ obj/
 *.nupkg
 packages/
 
-# Do NOT ignore the strong-name key — it must be consistent across builds
-# so the assembly's public key token stays stable in Dataverse.
-!*.snk
+# Strong-name key — excluded from source control; keep it locally to build.
+*.snk
