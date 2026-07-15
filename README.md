@@ -115,4 +115,3 @@ dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 # Launch the Plugin Registration Tool
 pac tool prt
 ```
-# Original Idea - https://www.linkedin.com/pulse/how-block-copilot-studio-default-environment-using-simple-ananthula-62qaf/
