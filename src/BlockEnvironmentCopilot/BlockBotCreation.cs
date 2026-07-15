@@ -26,6 +26,13 @@ namespace BlockEnvironmentCopilot
         private const string BlockMessageVariableSchemaName = "bbc_MakerUIMessage";
 
         /// <summary>
+        /// Schema name of the Dataverse environment variable that controls whether
+        /// agent creation is blocked. Blocking occurs only when its value is
+        /// <c>Yes</c> (case-insensitive).
+        /// </summary>
+        private const string BlockOnVariableSchemaName = "bbc_BlockOn";
+
+        /// <summary>
         /// Fallback message used when the environment variable is missing or empty.
         /// </summary>
         private const string DefaultBlockMessage =
@@ -43,6 +50,19 @@ namespace BlockEnvironmentCopilot
             if (localContext == null)
             {
                 throw new ArgumentNullException(nameof(localContext));
+            }
+
+            var blockOn = GetEnvironmentVariableValue(
+                localContext,
+                BlockOnVariableSchemaName);
+
+            // Only block when the environment variable is explicitly set to "Yes".
+            if (!string.Equals(blockOn?.Trim(), "Yes", StringComparison.OrdinalIgnoreCase))
+            {
+                localContext.Trace(
+                    $"Environment variable '{BlockOnVariableSchemaName}' is not 'Yes'; " +
+                    "allowing Copilot agent (bot) creation.");
+                return;
             }
 
             localContext.Trace("Blocking Copilot agent (bot) creation.");

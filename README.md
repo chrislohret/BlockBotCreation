@@ -45,11 +45,21 @@ assembly and its registered step.
    target environment, then **Solutions → Import solution**.
 3. Choose the downloaded zip and complete the import.
 
-Once imported, Copilot Studio agent creation is blocked in that environment
-immediately — the plugin step is registered automatically.
+Once imported, the plugin step is registered automatically. Blocking is
+**off by default** — you must turn it on via the `bbc_BlockOn` environment
+variable (see below).
 
-> Optionally set the `bbc_MakerUIMessage` environment variable to customize the
-> message shown to makers when creation is blocked.
+## Environment variables
+
+The plugin's behavior is controlled by two Dataverse environment variables:
+
+| Schema name         | Purpose                                                        | Default / behavior                                                                 |
+| ------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `bbc_BlockOn`       | Master switch that turns blocking on or off.                   | **Off by default.** Blocking occurs only when the value is `Yes` (case-insensitive). Any other value (including `No`, empty, or unset) allows agent creation. |
+| `bbc_MakerUIMessage`| Custom message shown to makers when creation is blocked.       | Optional. Falls back to a built-in default message when unset.                     |
+
+To block Copilot Studio agent creation in an environment, set `bbc_BlockOn` to
+`Yes`. To re-enable creation, set it to `No` (or clear the value).
 
 ## Register the plugin manually (developers only)
 
